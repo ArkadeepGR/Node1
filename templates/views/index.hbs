@@ -1,0 +1,36 @@
+<head>
+    <link rel="stylesheet" href="/css/style.css"> 
+</head>
+<body>
+{{>header}}
+{{>footer}}
+<form id="f">
+    <input type="text" id="loc" placeholder="Location">
+    <input type="Submit" value="submit">
+</form>    
+<div id="re">
+</div>
+<script>
+    formm=document.getElementById("f");
+    loc=document.getElementById("loc");
+    formm.addEventListener("submit",function(e){
+        e.preventDefault();        
+        go(loc.value)
+    })
+
+go=function(locc){
+    fetch("http://localhost:3000/weather?address="+encodeURIComponent(locc)).then(function(res){
+        res.json().then(function(data){
+            console.log(data)
+            if(data.Error){
+                console.log(data.Error)
+                document.getElementById("re").innerHTML=data.Error
+            }
+            else{
+                document.getElementById("re").innerHTML=data.location+"<br>Temperature: "+data.temp+" degree Celcius<br>Humidity: "+data.hum+" %<br>Description:"+data.desc
+            }
+        })
+    });
+}
+</script>
+</body>
