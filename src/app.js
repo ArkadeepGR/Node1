@@ -1,6 +1,7 @@
 const express=require("express")
 const app=express()
 const utils=require("./utils.js")
+const port=process.env.PORT || 3000
 path=require("path")
 ///public directory
 app.use(express.static(path.join(__dirname,"../public")))
@@ -52,6 +53,11 @@ app.get("*",function(req,res){
     res.render("pageNot",{title:"404",name:"Arkadeep",msg:"404 page not found"})
 })
 
+/*
 app.listen(3000,function(){
     console.log("Server up in port 3000")
+})
+*/
+app.listen(port,function(){
+    console.log("Server up in port "+port)
 })
