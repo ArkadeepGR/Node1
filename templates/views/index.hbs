@@ -19,7 +19,7 @@
     })
 
 go=function(locc){
-    fetch("http://localhost:3000/weather?address="+encodeURIComponent(locc)).then(function(res){
+    fetch("/weather?address="+encodeURIComponent(locc)).then(function(res){
         res.json().then(function(data){
             console.log(data)
             if(data.Error){
